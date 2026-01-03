@@ -15,12 +15,12 @@ const EventList = () => {
     }, []);
 
     const fetchEvents = async () => {
-        console.log('[v0] Fetching events from:', API_ENDPOINTS.EVENT);
+        console.log('Fetching events from:', API_ENDPOINTS.EVENT);
         
         try {
             const response = await axios.get(API_ENDPOINTS.EVENT); 
             
-            console.log('[v0] Events fetched successfully:', response.data.length);
+            console.log('Events fetched successfully:', response.data.length);
             
             const eventData = response.data.map(e => 
                 new EventModel(
@@ -36,7 +36,7 @@ const EventList = () => {
             setEvents(eventData);
             setLoading(false);
         } catch (err) {
-            console.error("[v0] Failed to fetch events:", err.response || err);
+            console.error("Failed to fetch events:", err.response || err);
             setError('Failed to load events. Please check the backend API connection.');
             setLoading(false);
         }
@@ -68,7 +68,7 @@ const EventList = () => {
             return;
         }
         
-        console.log('[v0] Booking ticket for event:', eventId);
+        console.log('Booking ticket for event:', eventId);
         
         setLoading(true);
 
@@ -81,12 +81,12 @@ const EventList = () => {
                 }
             );
 
-            console.log('[v0] Booking successful for:', eventTitle);
+            console.log('Booking successful for:', eventTitle);
             alert(`Success! Ticket booked for: ${eventTitle}.`);
             await fetchEvents();
 
         } catch (err) {
-            console.error("[v0] Booking Error:", err.response || err);
+            console.error("Booking Error:", err.response || err);
             const errorMessage = err.response?.data?.message || 'Booking failed. Server error or sold out.';
             setError(errorMessage);
             alert(`Booking Failed: ${errorMessage}`);

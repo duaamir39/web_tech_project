@@ -25,18 +25,18 @@ const MyBookings = () => {
             return;
         }
 
-        console.log('[v0] Fetching bookings from:', API_ENDPOINTS.BOOKING.MY_BOOKINGS);
+        console.log('Fetching bookings from:', API_ENDPOINTS.BOOKING.MY_BOOKINGS);
 
         try {
             const response = await axios.get(API_ENDPOINTS.BOOKING.MY_BOOKINGS, {
                 headers: getAuthHeaders()
             });
             
-            console.log('[v0] Bookings fetched successfully:', response.data.length);
+            console.log('Bookings fetched successfully:', response.data.length);
             setBookings(response.data);
             setLoading(false);
         } catch (err) {
-            console.error("[v0] Failed to fetch bookings:", err.response || err);
+            console.error("Failed to fetch bookings:", err.response || err);
             setError('Failed to load bookings. Are you still logged in?');
             setLoading(false);
         }
